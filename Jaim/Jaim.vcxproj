@@ -141,6 +141,15 @@
   <ItemGroup>
     <ClCompile Include="core.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Jaim.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="info.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,19 +1,22 @@
 #include <iostream>
-
-void load_message(int length)
-{
-	for (int i = 0; i < length; i++) {
-		std::cout << i << ".." << std::endl << std::endl;
-	}
-
-	std::cout << "Jiam Browser core loaded\n";
-}
+#include <fstream>
+#include <string>
+#include <clocale>
 
 int main()
 {
-	int length;
-	std::cin >> length;
-	load_message(length);
+	using namespace std;
+	string copyright;
+	ifstream file_load("info.txt");
+
+	setlocale(LC_ALL, "");
+
+	if (file_load.is_open()) {
+		getline(file_load, copyright);
+			cout << copyright << "\n";
+
+	}
+	else cout << "Error when reading file";
 
 	return 0;
 }
