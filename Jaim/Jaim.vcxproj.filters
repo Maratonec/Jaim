@@ -32,9 +32,4 @@
       <Filter>Soubory zdrojů</Filter>
     </ResourceCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="info.txt">
-      <Filter>Resources</Filter>
-    </Text>
-  </ItemGroup>
 </Project>
