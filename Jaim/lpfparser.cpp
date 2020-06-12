@@ -4,13 +4,15 @@
 #include <clocale>
 #include <sstream>
 #include <vector> 
-using namespace std;
 
+using namespace std;
 
 class LPFParser {
 
 public: 
 	vector<string> languages_main;
+	vector<vector<string> >strings_main;
+	vector<string> data_main;
 
 	void Create()
 	{
@@ -29,15 +31,16 @@ public:
 			//get values from first line (number of languges and sentences)
 			getline(file_load, line);
 			stringstream ss(line);
-			getline(ss, number_language, '!');
+			getline(ss, number_language, '~');
 			getline(ss, number_string);
 
 			//create arrays
 			int temp_language = stoi(number_language);
-			int temp_string = stoi(number_string);
+			long int temp_string = stoi(number_string);
 			vector<vector<string> > strings(temp_string, vector<string>(temp_language));
 			vector<string>languages(temp_language);
 			vector<string>data(temp_string);
+
 			//getting values (languages) from line 2
 			string temp_line = line;
 			getline(file_load, line);
@@ -47,16 +50,37 @@ public:
 			ss.clear();
 			string temp_value;
 			for (int i = 0; i < n; i++) {
-				getline(ss, languages[i], '?');
+				getline(ss, languages[i], '~');
 			}
+
+			//get the languge strings
+			for (int k = 0; k < temp_string; k++) {
+				getline(file_load, line);
+				ss.str(line);
+				ss.clear();
+				getline(ss, data[k], '=');
+				for (int j = 0; j < temp_language; j++) {
+					getline(ss, strings[k][j], '~');
+				}
+			}
+
+			//copy to global arrays
 			copy(languages.begin(), languages.end(), back_inserter(languages_main));
-			cout << languages_main[1];
+			copy(strings.begin(), strings.end(), back_inserter(strings_main));
+			copy(data.begin(), data.end(), back_inserter(data_main));
+
+			//test
+			cout << strings[0][2];
+			cout << "\n" << strings[1][1] << "\n";
+			cout << data[0];
+
 		}
 		else cout << "Error when reading file";
 
 	}
 };
 
+//test
 int main() {
 	LPFParser lpf;
 	lpf.Create();
