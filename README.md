@@ -1,7 +1,7 @@
 # Jaim
-Powerfull  standard c++ library for making everything much easier.
+Powerfull standard c++ library for making everything much easier.
 
-#LPFParser
+# LPFParser
 With LPFParser you can simply load data from .lpf files (language pack file) to load your translations from file.
 Example .lpf file (comments not supported in .lpf file)
 ```
