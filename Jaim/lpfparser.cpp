@@ -9,11 +9,12 @@ using namespace std;
 
 class LPFParser {
 
-private: 
+private:
 	vector<string> languages_main;
 	vector<vector<string> >strings_main;
 	vector<string> data_main;
 	int number_string_main;
+
 public:
 	void Create() {
 		//load file and settings
@@ -80,7 +81,7 @@ public:
 		int language_index;
 		language_index = distance(languages_main.begin(), find(languages_main.begin(), languages_main.end(), language));
 		if (language_index == languages_main.size()) {
-			return "Language "+ language +" not found";
+			return "Language " + language + " not found";
 		}
 		else {
 			for (int i = 0; i < number_string_main; i++) {
@@ -109,12 +110,11 @@ public:
 	}
 };
 
-//test
-int main() {
-	LPFParser lpf;
-	lpf.Create();
-	string test = lpf.Search("start", "en");
-	cout << test;
-	return 0;
-}
-
+	//test
+	int main() {
+		LPFParser lpf;
+		lpf.Create();
+		string test = lpf.Search("start", "en");
+		cout << test;
+		return 0;
+	}
