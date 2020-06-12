@@ -9,13 +9,13 @@ using namespace std;
 
 class LPFParser {
 
-public: 
+private: 
 	vector<string> languages_main;
 	vector<vector<string> >strings_main;
 	vector<string> data_main;
-
-	void Create()
-	{
+	int number_string_main;
+public:
+	void Create() {
 		//load file and settings
 		ifstream file_load("Resources/info.lpf");
 		setlocale(LC_ALL, "");
@@ -37,6 +37,7 @@ public:
 			//create arrays
 			int temp_language = stoi(number_language);
 			long int temp_string = stoi(number_string);
+			number_string_main = temp_string;
 			vector<vector<string> > strings(temp_string, vector<string>(temp_language));
 			vector<string>languages(temp_language);
 			vector<string>data(temp_string);
@@ -44,7 +45,7 @@ public:
 			//getting values (languages) from line 2
 			string temp_line = line;
 			getline(file_load, line);
-			int n = count(line.begin(), line.end(), '?');
+			int n = count(line.begin(), line.end(), '~');
 			n++;
 			ss.str(line);
 			ss.clear();
@@ -69,14 +70,42 @@ public:
 			copy(strings.begin(), strings.end(), back_inserter(strings_main));
 			copy(data.begin(), data.end(), back_inserter(data_main));
 
-			//test
-			cout << strings[0][2];
-			cout << "\n" << strings[1][1] << "\n";
-			cout << data[0];
-
 		}
 		else cout << "Error when reading file";
 
+	}
+	//search for string in language
+	string Search(string variable, string language) {
+
+		int language_index;
+		language_index = distance(languages_main.begin(), find(languages_main.begin(), languages_main.end(), language));
+		if (language_index == languages_main.size()) {
+			return "Language "+ language +" not found";
+		}
+		else {
+			for (int i = 0; i < number_string_main; i++) {
+				if (data_main[i] == variable) {
+					return strings_main[i][language_index];
+				}
+			}
+			return "Variable " + variable + " not found";
+		}
+
+	}
+
+	//get languages
+	vector<string> get_languages() {
+		return languages_main;
+	}
+
+	//get strings
+	vector<vector<string> > get_strings() {
+		return strings_main;
+	}
+
+	//get data
+	vector<string> get_variables() {
+		return data_main;
 	}
 };
 
@@ -84,6 +113,8 @@ public:
 int main() {
 	LPFParser lpf;
 	lpf.Create();
+	string test = lpf.Search("start", "en");
+	cout << test;
 	return 0;
 }
 
