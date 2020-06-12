@@ -16,9 +16,9 @@ private:
 	int number_string_main;
 
 public:
-	void Create() {
+	void Create(string path) {
 		//load file and settings
-		ifstream file_load("Resources/info.lpf");
+		ifstream file_load(path);
 		setlocale(LC_ALL, "");
 
 		if (file_load.is_open()) {
@@ -113,7 +113,7 @@ public:
 	//test
 	int main() {
 		LPFParser lpf;
-		lpf.Create();
+		lpf.Create("Resources/info.lpf");
 		string test = lpf.Search("start", "en");
 		cout << test;
 		return 0;
