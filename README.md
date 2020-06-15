@@ -6,7 +6,7 @@ With LPFParser you can simply load data from .lpf files (language pack file) to 
 #### Setup
 To work with lpfparser you have to include lpfparser.h that is in folder with lpfparser.cpp folder ```#include "lpfparser.h"``` and optionaly use namespace lpf ```using namespace lpf;"```
 #### Classes
-Firstly you need to call ```Create();``` function that will parse all the data from file to arrays. It's argument is the path where the .lpf file is. Then there is ```Search():``` function in which you have 2 arguments. The variable name of the string you want to have and the language. And last important function is ```string_search();``` There you have two arguments: the string that you want to translate (must be in .lpf file) and language you want to translate it.
+Firstly you need to call ```Create();``` function that will parse all the data from file to arrays. It's argument is the path where the .lpf file is. Then there is ```Search();``` function in which you have 2 arguments. The variable name of the string you want to have and the language. And last important function is ```string_search();``` There you have two arguments: the string that you want to translate (must be in .lpf file) and language you want to translate it.
 #### Example program
 ```
 #include "../LPFParser/lpfparser.h"
