@@ -1,7 +1,6 @@
 // Skript prostøedkù, který generuje Microsoft Visual C++
 //
 
-#include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////

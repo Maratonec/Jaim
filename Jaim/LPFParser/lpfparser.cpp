@@ -1,22 +1,13 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <clocale>
-#include <sstream>
-#include <vector> 
-
+#include "lpfparser.h"
 using namespace std;
+namespace lpf {
+	extern vector<string> languages_main;
+	extern vector<vector<string> >strings_main;
+	extern vector<string> data_main;
+	extern int number_string_main;
+	extern int number_language_main;
 
-class LPFParser {
-
-private:
-	vector<string> languages_main;
-	vector<vector<string> >strings_main;
-	vector<string> data_main;
-	int number_string_main;
-
-public:
-	void Create(string path) {
+	void LPFParser::Create(string path) {
 		//load file and settings
 		ifstream file_load(path);
 		setlocale(LC_ALL, "");
@@ -39,6 +30,7 @@ public:
 			int temp_language = stoi(number_language);
 			long int temp_string = stoi(number_string);
 			number_string_main = temp_string;
+			number_language_main = temp_language;
 			vector<vector<string> > strings(temp_string, vector<string>(temp_language));
 			vector<string>languages(temp_language);
 			vector<string>data(temp_string);
@@ -76,7 +68,7 @@ public:
 
 	}
 	//search for string in language
-	string Search(string variable, string language) {
+	string LPFParser::Search(string variable, string language) {
 
 		int language_index;
 		language_index = distance(languages_main.begin(), find(languages_main.begin(), languages_main.end(), language));
@@ -94,27 +86,39 @@ public:
 
 	}
 
+	string LPFParser::string_search(string string_value, string language) {
+
+		int language_index;
+		language_index = distance(languages_main.begin(), find(languages_main.begin(), languages_main.end(), language));
+		if (language_index == languages_main.size()) {
+			return "Language " + language + " not found";
+		}
+		for (int i = 0; i < number_string_main; i++) {
+			for (int j = 0; j < number_language_main; j++) {
+				if (strings_main[i][j] == string_value) {
+					return strings_main[i][language_index];
+				}
+			}
+		}
+		return "String: " + string_value + ", not found";
+
+	}
+
+
 	//get languages
-	vector<string> get_languages() {
+	vector<string> LPFParser::get_languages() {
 		return languages_main;
 	}
 
 	//get strings
-	vector<vector<string> > get_strings() {
+	vector<vector<string> > LPFParser::get_strings() {
 		return strings_main;
 	}
 
 	//get data
-	vector<string> get_variables() {
+	vector<string> LPFParser::get_variables() {
 		return data_main;
 	}
-};
 
-	//test
-	int main() {
-		LPFParser lpf;
-		lpf.Create("Resources/info.lpf");
-		string test = lpf.Search("start", "en");
-		cout << test;
-		return 0;
-	}
+
+}

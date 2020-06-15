@@ -139,13 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lpfparser.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="resource.h" />
+    <ClCompile Include="LPFParser\lpfparser.cpp" />
+    <ClCompile Include="MAIN\core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Jaim.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FILES\info.lpf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LPFParser\lpfparser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
