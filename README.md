@@ -1,5 +1,5 @@
 # Jaim
-Powerfull standard c++ library for making everything much easier.
+Powerfull cross-platform c++ library for making everything much easier.
 Every folder in CAPS contains only test code. You can use it as example project.
 ## LPFParser
 With LPFParser you can simply load data from .lpf files (language pack file) to load your translations from file.
